@@ -1,0 +1,40 @@
+{
+  "name": "@sekiju/repo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "tsup",
+    "lint": "biome lint --write --unsafe .",
+    "format": "biome format --write --no-errors-on-unmatched .",
+    "biome": "pnpm format && pnpm lint",
+    "test": "vitest"
+  },
+  "exports": {
+    "./array": {
+      "types": "./dist/array.d.ts",
+      "import": "./dist/array.mjs",
+      "require": "./dist/array.js"
+    },
+    "./filepath": {
+      "types": "./dist/filepath.d.ts",
+      "import": "./dist/filepath.mjs",
+      "require": "./dist/filepath.js"
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "@biomejs/biome": "1.9.4"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "description": "A utility package with array and file path tools, built for performance and type safety",
+  "license": "MIT",
+  "author": "Sekiju",
+  "keywords": ["utilities", "array", "filepath", "type safety", "performance"],
+  "homepage": "https://github.com/sekiju/repo",
+  "bugs": {
+    "url": "https://github.com/sekiju/repo/issues",
+    "email": "zzzcxk@gmail.com"
+  }
+}
