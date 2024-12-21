@@ -1,13 +1,14 @@
 {
   "name": "@sekiju/repo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "build": "tsup",
     "lint": "biome lint --write --unsafe .",
     "format": "biome format --write --no-errors-on-unmatched .",
     "biome": "pnpm format && pnpm lint",
-    "test": "vitest"
+    "test": "vitest run"
   },
+  "files": ["dist"],
   "exports": {
     "./array": {
       "types": "./dist/array.d.ts",
