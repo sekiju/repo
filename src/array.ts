@@ -10,7 +10,24 @@
  * chunk(['a', 'b', 'c'], 2)  // returns [['a', 'b'], ['c']]
  */
 export function chunk<T>(array: T[], size: number): T[][] {
-  return Array.from({ length: Math.ceil(array.length / size) }, (_, i) => array.slice(i * size, i * size + size))
+  if (size <= 0) throw new Error('Chunk size must be greater than 0')
+  if (array.length === 0) return []
+  if (size >= array.length) return [array.slice()]
+
+  const chunksCount = Math.ceil(array.length / size)
+  const result = new Array(chunksCount)
+
+  for (let i = 0; i < chunksCount; i++) {
+    const start = i * size
+    const end = start + size
+    if (end >= array.length) {
+      result[i] = array.slice(start)
+    } else {
+      result[i] = array.slice(start, end)
+    }
+  }
+
+  return result
 }
 
 /**
@@ -33,9 +50,6 @@ export function flatten<T>(array: readonly T[][]): T[] {
  * Picks one or more random elements from an array.
  * If amount is 1 or undefined, returns a single element.
  * If amount is greater than 1, returns an array of elements.
- *
- * The function modifies a copy of the input array, not the original.
- * Selected elements are guaranteed to be unique (no duplicates).
  *
  * @param array - The array to pick elements from
  * @param amount - Number of elements to pick (default: 1)

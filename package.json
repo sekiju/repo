@@ -6,7 +6,8 @@
     "lint": "biome lint --write --unsafe .",
     "format": "biome format --write --no-errors-on-unmatched .",
     "biome": "pnpm format && pnpm lint",
-    "test": "vitest run"
+    "test": "vitest run",
+    "bench": "vitest bench --run"
   },
   "files": ["dist"],
   "exports": {
@@ -19,14 +20,19 @@
       "types": "./dist/filepath.d.ts",
       "import": "./dist/filepath.mjs",
       "require": "./dist/filepath.js"
+    },
+    "./check": {
+      "types": "./dist/check.d.ts",
+      "import": "./dist/check.mjs",
+      "require": "./dist/check.js"
     }
   },
   "devDependencies": {
+    "@biomejs/biome": "1.9.4",
     "@types/node": "^22.10.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",
-    "vitest": "^2.1.8",
-    "@biomejs/biome": "1.9.4"
+    "vitest": "^2.1.8"
   },
   "packageManager": "pnpm@9.15.0",
   "description": "A utility package with array and file path tools, built for performance and type safety",
