@@ -9,14 +9,14 @@ describe("ext", () => {
   })
 
   it("should handle files without extensions", () => {
-    expect(ext("filename")).toBe("")
-    expect(ext("README")).toBe("")
+    expect(ext("filename")).toBeUndefined()
+    expect(ext("README")).toBeUndefined()
   })
 
   // Edge cases
   it("should handle hidden files", () => {
-    expect(ext(".gitignore")).toBe("")
-    expect(ext(".env")).toBe("")
+    expect(ext(".gitignore")).toBeUndefined()
+    expect(ext(".env")).toBeUndefined()
   })
 
   it("should handle multiple dots", () => {
@@ -39,14 +39,14 @@ describe("ext", () => {
 
   // Corner cases
   it("should handle empty strings", () => {
-    expect(ext("")).toBe("")
+    expect(ext("")).toBeUndefined()
   })
 
   it("should handle dots at various positions", () => {
-    expect(ext(".")).toBe("")
-    expect(ext("..")).toBe("")
-    expect(ext("...")).toBe("")
-    expect(ext("file.")).toBe("")
+    expect(ext(".")).toBeUndefined()
+    expect(ext("..")).toBeUndefined()
+    expect(ext("...")).toBeUndefined()
+    expect(ext("file.")).toBeUndefined()
   })
 
   // Unicode support
