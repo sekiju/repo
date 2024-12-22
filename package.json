@@ -7,7 +7,8 @@
     "format": "biome format --write --no-errors-on-unmatched .",
     "biome": "pnpm format && pnpm lint",
     "test": "vitest run",
-    "bench": "vitest bench --run"
+    "bench": "vitest bench --run",
+    "prepublish": "pnpm run test && pnpm run build"
   },
   "files": ["dist"],
   "exports": {
