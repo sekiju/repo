@@ -1,4 +1,4 @@
-import type { Constructor, Ctor, NonNullObject, Nullish } from "./types"
+import type { Constructor, Ctor, NonNullObject } from "./types"
 
 /**
  * Checks if a value is a function.
@@ -28,53 +28,6 @@ export function isFunction(input: unknown): input is Function {
  */
 export function isClass(input: unknown): input is Ctor {
   return typeof input === "function" && typeof input.prototype === "object"
-}
-
-/**
- * Checks if a value is null or undefined.
- *
- * @param value - Value to check
- * @returns True if the value is null or undefined, false otherwise
- *
- * @example
- * isNullOrUndefined(null)      // returns true
- * isNullOrUndefined(undefined) // returns true
- * isNullOrUndefined(0)         // returns false
- */
-export function isNullOrUndefined(value: unknown): value is Nullish {
-  return value === undefined || value === null
-}
-
-/**
- * Checks if a value is null, undefined, or an empty string/array.
- *
- * @param value - Value to check
- * @returns True if the value is null, undefined, or empty, false otherwise
- *
- * @example
- * isNullOrUndefinedOrEmpty("")         // returns true
- * isNullOrUndefinedOrEmpty([])         // returns true
- * isNullOrUndefinedOrEmpty(null)       // returns true
- * isNullOrUndefinedOrEmpty("text")     // returns false
- */
-export function isNullOrUndefinedOrEmpty(value: unknown): value is Nullish | "" {
-  return isNullOrUndefined(value) || (value as string | unknown[]).length === 0
-}
-
-/**
- * Checks if a value is null, undefined, or zero.
- *
- * @param value - Value to check
- * @returns True if the value is null, undefined, or zero, false otherwise
- *
- * @example
- * isNullOrUndefinedOrZero(0)          // returns true
- * isNullOrUndefinedOrZero(null)       // returns true
- * isNullOrUndefinedOrZero(undefined)  // returns true
- * isNullOrUndefinedOrZero(1)          // returns false
- */
-export function isNullOrUndefinedOrZero(value: unknown): value is Nullish | 0 {
-  return value === 0 || isNullOrUndefined(value)
 }
 
 /**
@@ -116,4 +69,3 @@ export function isObject<T extends Constructor<unknown> = ObjectConstructor>(inp
   return typeof input === "object" && input ? input.constructor === (constructorType ?? Object) : false
 }
 
-export { isNullOrUndefined as isNullish, isNullOrUndefinedOrEmpty as isNullishOrEmpty, isNullOrUndefinedOrZero as isNullishOrZero }
