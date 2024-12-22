@@ -1,14 +1,4 @@
 import { bench, describe } from "vitest"
-// biome-ignore lint/style/useNodejsImportProtocol: vitest-bench
-import { extname as extPath } from "path"
-
-function extBit(filepath: string): string | undefined {
-  return filepath.slice(((filepath.lastIndexOf(".") - 1) >>> 0) + 2)
-}
-
-function extSplit(filepath: string): string | undefined {
-  return filepath.split(".").pop()
-}
 
 function extReg(filepath: string): string | undefined {
   const match = /[^.]+$/.exec(filepath)
@@ -49,33 +39,15 @@ describe("extension extraction benchmarks", () => {
     "파일.jpg",
   ]
 
-  bench("bit approach", () => {
-    for (const filename in testCases) {
-      extBit(filename)
-    }
-  })
-
-  bench("regex approach", () => {
+  bench("regex", () => {
     for (const filename in testCases) {
       extReg(filename)
     }
   })
 
-  bench("split approach", () => {
-    for (const filename in testCases) {
-      extSplit(filename)
-    }
-  })
-
-  bench("slice approach", () => {
+  bench("slice (current)", () => {
     for (const filename in testCases) {
       extSlice(filename)
-    }
-  })
-
-  bench("standard library approach", () => {
-    for (const filename in testCases) {
-      extPath(filename)
     }
   })
 })
